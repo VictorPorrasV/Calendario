@@ -1,0 +1,20 @@
+﻿<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue-gradient">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar Registro</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de querer borrar este registro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"> </i> No</button>
+
+                <form id="deleteForm" asp-action="Delete" asp-controller="Eventos" method="post">
+                    <input type="hidden" name="id" id="deleteId" />
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-check-circle"> </i> Sí</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

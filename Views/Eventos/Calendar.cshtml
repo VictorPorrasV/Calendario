@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Calendar";
+}
+
+<h2>Calendario</h2>
+
+<div id="calendar"></div>
+
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                timeZone: 'local',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                events: @Html.Raw(ViewBag.Eventos),
+                eventContent: function (info) {
+                    var title = document.createElement('div');
+                    title.classList.add('fc-event-title');
+                    title.innerText = info.event.title;
+
+                    var container = document.createElement('div');
+                    container.classList.add('fc-event-container');
+                    container.appendChild(title);
+
+                    return { domNodes: [container] };
+                },
+                eventColor: function (eventInfo) {
+                    return eventInfo.event.extendedProps.Color; // Usa el color del evento
+                },
+                editable: true,
+                selectable: true,
+                selectHelper: true,
+            });
+            calendar.render();
+        });
+    </script>
+}
